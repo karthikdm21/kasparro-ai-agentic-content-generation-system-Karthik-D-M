@@ -1,236 +1,178 @@
-# Multi-Agent Content Generation System
+<h1>Multi-Agent Content Generation System</h1>
 
-A production-grade agentic automation system that generates structured, machine-readable content pages from product data using modular agents orchestrated by LangChain.
+<h2>Overview</h2>
+<p>
+This project implements a production-style multi-agent automation system that generates
+structured, machine-readable product content from a small input dataset.
+The system produces FAQ, Product, and Comparison pages in JSON format using modular agents
+coordinated through a lightweight orchestration layer.
+</p>
 
-## Overview
+<p>
+The focus of this project is system design, agent boundaries, and automation.
+LangChain is used only for orchestration and LLM interaction, while all business logic,
+templates, and transformations are implemented in pure Python.
+</p>
 
-This system demonstrates a **multi-agent architecture** where specialized agents work together to automatically generate FAQ, Product, and Comparison pages in JSON format. LangChain is used **only as a lightweight orchestrator** for agent coordination, while all business logic remains in pure Python.
+<hr/>
 
-## Features
+<h2>Key Capabilities</h2>
+<ul>
+  <li>Modular multi-agent architecture with clear responsibilities</li>
+  <li>End-to-end automated pipeline triggered by a single command</li>
+  <li>Reusable logic blocks for content transformation</li>
+  <li>Template-driven generation for consistent structured outputs</li>
+  <li>Machine-readable JSON outputs suitable for downstream systems</li>
+  <li>Execution metadata for traceability and debugging</li>
+</ul>
 
-- **5 Specialized Agents**: Each with single responsibility and stateless design
-- **4 Reusable Logic Blocks**: Pure Python transformation functions
-- **3 Structured Templates**: FAQ, Product, and Comparison page definitions
-- **DAG-like Pipeline**: Orchestrated workflow with clear stage boundaries
-- **Automated End-to-End**: Single command execution from input to JSON output
-- **Execution Metadata**: Transparent tracking of agent execution order and timestamps
+<hr/>
 
-## System Architecture
+<h2>System Architecture</h2>
 
-```
-Input Data → Parser → Question Generator → Content Logic → Template Agent → Page Builder → JSON Outputs
-                ↓                              ↓
-                └──────────── Answer Generator ─┘
-```
+<p>The system operates as a staged pipeline with clear boundaries between agents.</p>
 
-### Agents
+<pre>
+Input Data
+   ↓
+ProductParserAgent
+   ↓
+QuestionGeneratorAgent
+   ↓
+ContentLogicAgent
+   ↓
+AnswerGenerator
+   ↓
+TemplateAgent
+   ↓
+PageBuilderAgent
+   ↓
+JSON Outputs
+</pre>
 
-1. **ProductParserAgent**: Validates and structures raw product data
-2. **QuestionGeneratorAgent**: Generates ≥15 categorized user questions using LLM
-3. **ContentLogicAgent**: Routes to logic blocks and applies transformations
-4. **TemplateAgent**: Fills structured templates with processed content
-5. **PageBuilderAgent**: Assembles and writes final JSON files
+![FlowChart Diagram](assets/image.png)
 
-### Logic Blocks
+<hr/>
 
-- `benefits_block.py`: Transforms benefits into structured descriptions
-- `usage_block.py`: Formats usage instructions with steps and tips
-- `safety_block.py`: Structures safety information and contraindications
-- `comparison_block.py`: Implements feature-by-feature product comparison
+<h2>Agents</h2>
 
-## Installation
+<h3>ProductParserAgent</h3>
+<ul>
+  <li>Validates raw product data</li>
+  <li>Normalizes and structures fields into a standard internal format</li>
+</ul>
 
-### Prerequisites
+<h3>QuestionGeneratorAgent</h3>
+<ul>
+  <li>Dynamically generates at least 15 user questions</li>
+  <li>Categorizes questions into Informational, Usage, Safety, Purchase, and Comparison</li>
+  <li>Uses an LLM with a deterministic fallback for reliability</li>
+</ul>
 
-- Python 3.8+
-- OpenAI API key OR Google API key (for LLM-based question and answer generation)
+<h3>ContentLogicAgent</h3>
+<ul>
+  <li>Routes data through reusable logic blocks</li>
+  <li>Applies structured transformations to product attributes</li>
+</ul>
 
-### Setup
+<h3>AnswerGenerator</h3>
+<ul>
+  <li>Generates contextual answers for FAQ questions</li>
+  <li>Uses only the provided product data</li>
+</ul>
 
-1. **Clone or download this repository**
+<h3>TemplateAgent</h3>
+<ul>
+  <li>Fills predefined templates for FAQ, Product, and Comparison pages</li>
+  <li>Ensures consistent output structure</li>
+</ul>
 
-2. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+<h3>PageBuilderAgent</h3>
+<ul>
+  <li>Assembles final page objects</li>
+  <li>Writes validated JSON files to the output directory</li>
+</ul>
 
-3. **Configure API key**:
-   
-   Create a `.env` file in the project root:
-   ```env
-   # Option 1: OpenAI (Default)
-   OPENAI_API_KEY=your_openai_api_key_here
-   
-   # Option 2: Google Gemini (Recommended for free tier)
-   GOOGLE_API_KEY=your_google_ai_studio_key_here
-   ```
-   *Note: If `GOOGLE_API_KEY` is present, the system will prioritize it and use the `gemini-2.5-flash` model.*
+<hr/>
 
-## Usage
+<h2>Logic Blocks</h2>
+<ul>
+  <li><strong>benefits_block.py</strong> – Structures product benefits</li>
+  <li><strong>usage_block.py</strong> – Formats usage steps and guidance</li>
+  <li><strong>safety_block.py</strong> – Structures safety notes and precautions</li>
+  <li><strong>comparison_block.py</strong> – Generates a structured comparison with a fictional competitor</li>
+</ul>
 
-### Run the Pipeline
+<hr/>
 
-Execute the complete pipeline with a single command:
+<h2>Running the Pipeline</h2>
 
-```bash
+<pre>
 python run_pipeline.py
-```
+</pre>
 
-### Expected Output
+<hr/>
 
-The pipeline will generate 3 JSON files in the `outputs/` directory:
+<h2>Output</h2>
+<ul>
+  <li><code>faq.json</code> – FAQ page with categorized questions and answers</li>
+  <li><code>product_page.json</code> – Structured product details</li>
+  <li><code>comparison_page.json</code> – Feature-by-feature comparison with a fictional product</li>
+</ul>
 
-- **faq.json**: FAQ page with ≥5 Q&A pairs across multiple categories
-- **product_page.json**: Structured product information with benefits, usage, and safety
-- **comparison_page.json**: Side-by-side comparison with a fictional competitor
+<p>All outputs are valid JSON and designed for direct consumption by other systems.</p>
 
-### Pipeline Stages
+<hr/>
 
-The pipeline executes in 6 stages:
+<h2>Execution Metadata</h2>
 
-1. **Parse**: Structure and validate product data
-2. **Generate**: Create categorized user questions
-3. **Process**: Transform content through logic blocks
-4. **Answer**: Generate FAQ answers using LLM
-5. **Template**: Fill all templates (parallel)
-6. **Build**: Write final JSON files
-
-## Project Structure
-
-```
-kasparro-ai-agentic-content-generation-system-karthik/
-│
-├── agents/                      # Specialized agent modules
-│   ├── product_parser_agent.py
-│   ├── question_generator_agent.py
-│   ├── content_logic_agent.py
-│   ├── template_agent.py
-│   └── page_builder_agent.py
-│
-├── logic_blocks/                # Reusable transformation logic
-│   ├── benefits_block.py
-│   ├── usage_block.py
-│   ├── safety_block.py
-│   └── comparison_block.py
-│
-├── templates/                   # Template definitions
-│   ├── faq_template.py
-│   ├── product_template.py
-│   └── comparison_template.py
-│
-├── orchestrator/                # Pipeline coordination
-│   ├── pipeline.py
-│   └── answer_generator.py
-│
-├── outputs/                     # Generated JSON files
-│   ├── faq.json
-│   ├── product_page.json
-│   └── comparison_page.json
-│
-├── docs/                        # Documentation
-│   └── projectdocumentation.md
-│
-├── run_pipeline.py              # Main entry point
-├── requirements.txt             # Python dependencies
-├── .env.example                 # Environment variable template
-└── README.md                    # This file
-```
-
-## Design Principles
-
-### Multi-Agent Architecture
-
-- **Single Responsibility**: Each agent has one clear purpose
-- **Stateless Design**: Agents don't maintain state between calls
-- **Explicit I/O**: Clear input/output contracts for each agent
-
-### LangChain Usage
-
-✅ **Used for**:
-- Agent wrappers and coordination
-- LLM interaction for question/answer generation
-- Message passing between stages
-
-❌ **NOT used for**:
-- Business logic (in pure Python)
-- Template definitions (in pure Python)
-- Content transformation rules (in pure Python)
-
-### Modularity
-
-- **Logic blocks** are reusable across multiple templates
-- **Templates** define structure with dependencies on logic blocks
-- **Agents** can be tested and modified independently
-
-## Input Data
-
-The system uses **only** the following product data (no external research):
-
-```python
+<pre>
 {
-    "name": "GlowBoost Vitamin C Serum",
-    "concentration": "10% Vitamin C",
-    "skin_type": "Oily, Combination",
-    "key_ingredients": "Vitamin C, Hyaluronic Acid",
-    "benefits": "Brightening, Fades dark spots",
-    "how_to_use": "Apply 2–3 drops in the morning before sunscreen",
-    "side_effects": "Mild tingling for sensitive skin",
-    "price": "₹699"
+  "_meta": {
+    "generated_by": "PageBuilderAgent",
+    "agents_involved": [
+      "ProductParserAgent",
+      "QuestionGeneratorAgent",
+      "ContentLogicAgent",
+      "AnswerGenerator",
+      "TemplateAgent",
+      "PageBuilderAgent"
+    ],
+    "execution_timestamp": "2025-12-25T11:49:29.212033",
+    "pipeline_version": "1.0.0"
+  }
 }
-```
+</pre>
 
-## Output Format
+<hr/>
 
-All outputs are **valid JSON** files with structured data:
+<h2>Project Structure</h2>
 
-- **faq.json**: Questions categorized into Informational, Usage, Safety, Purchase, Comparison
-- **product_page.json**: Sections for product info, benefits, usage, and safety
-- **comparison_page.json**: Feature-by-feature comparison with fictional competitor
+<pre>
+kasparro-ai-agentic-content-generation-system-karthik/
+├── agents/
+├── logic_blocks/
+├── templates/
+├── orchestrator/
+├── outputs/
+├── docs/
+├── run_pipeline.py
+├── requirements.txt
+├── .env.example
+└── README.md
+</pre>
 
-## Agent Execution Metadata
+<hr/>
 
-Each output file includes a `_meta` object that tracks the pipeline execution details:
+<h2>Documentation</h2>
+<p>
+Detailed system design and architectural reasoning are available in
+<code>docs/projectdocumentation.md</code>.
+</p>
 
-```json
-"_meta": {
-  "generated_by": "PageBuilderAgent",
-  "agents_involved": [
-    "ProductParserAgent",
-    "QuestionGeneratorAgent",
-    "ContentLogicAgent",
-    "AnswerGenerator",
-    "TemplateAgent",
-    "PageBuilderAgent"
-  ],
-  "execution_timestamp": "2025-12-25T11:49:29.212033",
-  "pipeline_version": "1.0.0"
-}
-```
+<hr/>
 
-This feature provides transparency into the generation process without modifying the core business logic or template structures.
-
-## Troubleshooting
-
-### API Key Issues
-
-If you don't have an OpenAI API key:
-- The pipeline will use fallback methods for question generation
-- Answers will still be generated but may be less contextual
-- For best results, obtain an API key from OpenAI
-
-### Import Errors
-
-If you encounter import errors:
-```bash
-# Ensure you're running from the project root
-cd kasparro-ai-agentic-content-generation-system-karthik
-python run_pipeline.py
-```
-
-## Documentation
-
-For detailed system design and architecture, see [docs/projectdocumentation.md](docs/projectdocumentation.md).
-
-## License
-
-This project is created as a demonstration of multi-agent system design.
+<h2>License</h2>
+<p>
+This project is created for demonstrating applied AI system design and agentic automation.
+</p>
