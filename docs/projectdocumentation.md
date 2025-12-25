@@ -1,10 +1,34 @@
 # Multi-Agent Content Generation System
 
-## Project Overview
+## Problem Statement
 
-A multi-agent automation system that generates structured content pages (FAQ, Product, Comparison) from product data using LangChain orchestration and specialized agents.
+Creating structured, consistent, and high-quality marketing content (FAQs, product pages, comparisons) for a large inventory of products is time-consuming and error-prone when done manually. Ensuring that all content is accurate, SEO-friendly, and follows a specific brand voice requires significant human effort. Moreover, maintaining consistency across different content types (safety warnings, usage instructions) is difficult at scale without automation.
 
-## System Architecture
+## Solution Overview
+
+The **Kasparro AI Agentic Content Generation System** serves as an intelligent automation pipeline that transforms raw product data into fully formatted, ready-to-publish content. By orchestrating specialized AI agents, the system automates the generation of:
+
+- **Comprehensive FAQs** with context-aware answers.
+- **Detailed Product Pages** including benefits, usage instructions, and safety warnings.
+- **Competitive Comparison Pages** against fictional or real competitors.
+
+The solution leverages Large Language Models (LLMs) via LangChain for creative tasks (question generation, answer synthesis) while using deterministic Python logic for structural consistency and safety compliance.
+
+## Scopes & Assumptions
+
+### Scope
+- **Input**: Structured JSON product data.
+- **Output**: Three distinct JSON files (FAQ, Product Page, Comparison Page) per product containing execution metadata.
+- **Agents**: Parser, Question Generator, Content Logic, Answer Generator, Template Filler, Page Builder.
+- **Integration**: Supports OpenAI (GPT-3.5/4) and Google Gemini (gemini-2.5-flash) models.
+
+### Assumptions
+- Input data is well-formed and contains essential fields (name, description, features).
+- Valid API keys for OpenAI or Google Gemini are provided in the environment.
+- The system runs in a Python 3.8+ environment.
+- Generated content is strictly based on provided product data to minimize hallucinations.
+
+## System Design
 
 ![System Architecture](system_architecture.png)
 
