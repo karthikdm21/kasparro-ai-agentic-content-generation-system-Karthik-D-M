@@ -1,0 +1,26 @@
+# Environment Variables (CRITICAL: Do not remove this)
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Mac
+.DS_Store
+
+# Temporary Scripts
+diagnosis_script.py
+check_api.py
+diagnose_gemini.py
+test_gemini.py
+models.txt
+debug_env.py

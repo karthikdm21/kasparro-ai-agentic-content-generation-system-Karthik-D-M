@@ -1,0 +1,83 @@
+{
+  "page_type": "comparison",
+  "product_a": {
+    "name": "GlowBoost Vitamin C Serum",
+    "concentration": "10% Vitamin C",
+    "skin_type": "Oily, Combination",
+    "key_ingredients": "Vitamin C, Hyaluronic Acid",
+    "benefits": "Brightening, Fades dark spots",
+    "price": "₹699"
+  },
+  "product_b": {
+    "name": "RadiantGlow Vitamin C Serum",
+    "concentration": "15% Vitamin C",
+    "skin_type": "All skin types",
+    "key_ingredients": "Vitamin C, Vitamin E, Ferulic Acid",
+    "benefits": "Anti-aging, Brightening, Antioxidant protection",
+    "price": "₹899"
+  },
+  "comparison": {
+    "feature_comparison": [
+      {
+        "feature": "Concentration",
+        "product_a": "10% Vitamin C",
+        "product_b": "15% Vitamin C",
+        "winner": "product_b"
+      },
+      {
+        "feature": "Price",
+        "product_a": "₹699",
+        "product_b": "₹899",
+        "winner": "product_a"
+      },
+      {
+        "feature": "Skin Type",
+        "product_a": "Oily, Combination",
+        "product_b": "All skin types",
+        "winner": "product_a"
+      },
+      {
+        "feature": "Key Ingredients",
+        "product_a": "Vitamin C, Hyaluronic Acid",
+        "product_b": "Vitamin C, Vitamin E, Ferulic Acid",
+        "winner": "tie"
+      },
+      {
+        "feature": "Benefits",
+        "product_a": "Brightening, Fades dark spots",
+        "product_b": "Anti-aging, Brightening, Antioxidant protection",
+        "winner": "tie"
+      }
+    ],
+    "winner_features": {
+      "product_a": [
+        "Price",
+        "Skin Type"
+      ],
+      "product_b": [
+        "Concentration"
+      ]
+    },
+    "similarities": [],
+    "differences": []
+  },
+  "recommendation": "Choose GlowBoost Vitamin C Serum for better overall value and effectiveness",
+  "metadata": {
+    "generated_date": "2025-12-25T16:41:43.618078",
+    "version": "1.0",
+    "template": "comparison_template"
+  },
+  "_meta": {
+    "generated_by": "PageBuilderAgent",
+    "agents_involved": [
+      "ProductParserAgent",
+      "QuestionGeneratorAgent",
+      "ContentLogicAgent",
+      "AnswerGenerator",
+      "TemplateAgent",
+      "PageBuilderAgent"
+    ],
+    "execution_timestamp": "2025-12-25T16:41:15.608889",
+    "pipeline_version": "1.0.0"
+  }
+}

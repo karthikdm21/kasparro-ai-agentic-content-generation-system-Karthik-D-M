@@ -1,0 +1,71 @@
+{
+  "page_type": "product",
+  "product_info": {
+    "name": "GlowBoost Vitamin C Serum",
+    "concentration": "10% Vitamin C",
+    "skin_type": "Oily, Combination",
+    "key_ingredients": "Vitamin C, Hyaluronic Acid",
+    "price": "₹699"
+  },
+  "benefits_section": {
+    "summary": "This product offers Brightening, and Fades dark spots.",
+    "benefits_list": [
+      "Brightening",
+      "Fades dark spots"
+    ],
+    "primary_benefit": "Brightening"
+  },
+  "usage_section": {
+    "timing": "morning",
+    "steps": [
+      "Cleanse your face thoroughly and pat dry",
+      "Apply 2–3 drops to your fingertips",
+      "Gently massage the serum onto your face and neck",
+      "Wait for the serum to fully absorb (1-2 minutes)",
+      "Follow with sunscreen (essential when using Vitamin C)"
+    ],
+    "tips": [
+      "Store in a cool, dark place to maintain Vitamin C potency",
+      "Use within 3-6 months of opening for maximum effectiveness",
+      "This lightweight formula is ideal for oily skin and won't clog pores",
+      "Focus application on areas that need brightening, avoiding overly dry patches",
+      "Perform a patch test before first use",
+      "Start with once daily application and increase as tolerated"
+    ]
+  },
+  "safety_section": {
+    "side_effects": [
+      "Mild tingling for sensitive skin"
+    ],
+    "severity": "mild",
+    "precautions": [
+      "Perform a patch test on your inner arm before first use",
+      "Discontinue use if irritation occurs",
+      "Avoid contact with eyes; rinse thoroughly if contact occurs",
+      "Those with sensitive skin should start with alternate-day application"
+    ],
+    "warnings": [
+      "May increase sun sensitivity - always use sunscreen during the day",
+      "For external use only",
+      "Keep out of reach of children"
+    ]
+  },
+  "metadata": {
+    "generated_date": "2025-12-25T16:41:43.617981",
+    "version": "1.0",
+    "template": "product_template"
+  },
+  "_meta": {
+    "generated_by": "PageBuilderAgent",
+    "agents_involved": [
+      "ProductParserAgent",
+      "QuestionGeneratorAgent",
+      "ContentLogicAgent",
+      "AnswerGenerator",
+      "TemplateAgent",
+      "PageBuilderAgent"
+    ],
+    "execution_timestamp": "2025-12-25T16:41:15.608889",
+    "pipeline_version": "1.0.0"
+  }
+}
