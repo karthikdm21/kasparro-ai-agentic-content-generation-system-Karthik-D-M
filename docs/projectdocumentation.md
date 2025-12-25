@@ -32,6 +32,29 @@ The solution leverages Large Language Models (LLMs) via LangChain for creative t
 
 ![System Architecture](system_architecture.png)
 
+The system is designed as a **staged pipeline** where each agent performs a specific transformation on the data. This modular approach ensures that the system is easy to debug, test, and extend.
+
+### Core Components
+
+- **Orchestrator (`pipeline.py`)**: The central nervous system that manages the flow of data between agents. It ensures that each stage receives the necessary context and handles errors gracefully.
+- **LLM-Powered Agents**:
+  - `QuestionGeneratorAgent`: Crafting user-centric questions using few-shot prompting.
+  - `AnswerGenerator`: Synthesizing product data into concise, accurate answers.
+- **Deterministic Logic Agents**:
+  - `ProductParserAgent`: Enforces data integrity at the entry point.
+  - `ContentLogicAgent`: Executes complex business rules (e.g., safety checks, benefit extraction) without LLM overhead.
+- **Page Assembly Agents**:
+  - `TemplateAgent`: Maps processed data to visual/structural components.
+  - `PageBuilderAgent`: Finalizes the output and attaches execution telemetry.
+
+### Data Flow
+
+1. **Ingestion**: Raw product JSON is validated and transformed into a standard `ProductData` object.
+2. **Expansion**: The system generates a broad set of queries and scenarios based on the product attributes.
+3. **Refinement**: Content blocks are processed through specialized logic gates (Safety, Benefits, Comparison).
+4. **Synthesis**: LLMs generate natural language responses based on the refined data.
+5. **Finalization**: Data is serialized into multiple JSON formats with attached execution metadata.
+
 ## Pipeline Stages
 
 The system processes content through 6 sequential stages:
