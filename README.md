@@ -50,7 +50,7 @@ PageBuilderAgent
 JSON Outputs
 </pre>
 
-![FlowChart Diagram](assets/image.png)
+<img src="assets/image.png" alt="FlowChart Diagram" width="600"/>
 
 <hr/>
 
