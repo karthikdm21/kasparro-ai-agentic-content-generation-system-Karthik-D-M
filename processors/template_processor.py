@@ -2,6 +2,7 @@ from typing import Dict, Any
 import sys
 import os
 
+# Add parent directory for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from templates.faq_template import FAQTemplate
@@ -9,10 +10,10 @@ from templates.product_template import ProductTemplate
 from templates.comparison_template import ComparisonTemplate
 
 
-class TemplateAgent:
+class TemplateProcessor:
     
     def __init__(self):
-        self.agent_name = "TemplateAgent"
+        self.processor_name = "TemplateProcessor"
         
         self.templates = {
             "faq": FAQTemplate,

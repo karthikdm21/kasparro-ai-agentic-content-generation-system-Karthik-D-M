@@ -3,10 +3,10 @@ from typing import Dict, Any, Optional
 import os
 
 
-class PageBuilderAgent:
+class PageBuilder:
     
     def __init__(self, output_dir: str = "outputs"):
-        self.agent_name = "PageBuilderAgent"
+        self.processor_name = "PageBuilder"
         self.output_dir = output_dir
         
         os.makedirs(output_dir, exist_ok=True)
@@ -19,7 +19,6 @@ class PageBuilderAgent:
         if not filename.endswith('.json'):
             filename += '.json'
         
-        # Inject _meta object if execution context is provided
         if execution_context is not None:
             page_type = self._extract_page_type(filename)
             page_data_with_meta = page_data.copy()
@@ -45,7 +44,6 @@ class PageBuilderAgent:
         return output_paths
     
     def _extract_page_type(self, filename: str) -> str:
-        """Extract page type from filename for metadata generation."""
         if 'faq' in filename.lower():
             return 'faq'
         elif 'product' in filename.lower():

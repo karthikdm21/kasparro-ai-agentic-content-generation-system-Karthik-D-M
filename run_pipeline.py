@@ -1,9 +1,3 @@
-"""
-Main entry point for the multi-agent content generation pipeline.
-
-Run this script to execute the complete pipeline end-to-end.
-"""
-
 import os
 import sys
 from dotenv import load_dotenv
@@ -11,7 +5,7 @@ from dotenv import load_dotenv
 # Add current directory to path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from orchestrator.pipeline import ContentGenerationPipeline
+from orchestrator.graph_orchestrator import GraphOrchestrator
 
 
 def main():
@@ -23,24 +17,24 @@ def main():
     # Get API key from environment (OpenAI or Google)
     api_key = os.getenv('OPENAI_API_KEY')
     
-    # Check if the key is just a placeholder
     if api_key and "your_openai_api_key_here" in api_key:
         api_key = None
         
     if not api_key:
         api_key = os.getenv('GOOGLE_API_KEY')
-        # Check if Google key is placeholder
         if api_key and "your_google" in api_key:
             api_key = None
             
         if api_key:
             print("Using Google Gemini API")
-        else:
-            print("WARNING: No valid API key found. Using fallback methods.")
     else:
         print("Using OpenAI API")
     
-    # Define input product data (ONLY source of truth - no external research)
+    if not api_key:
+        print("ERROR: No valid API key found. The system requires a live LLM to function.")
+        return 1
+    
+    # Product data source
     raw_product_data = {
         "name": "GlowBoost Vitamin C Serum",
         "concentration": "10% Vitamin C",
@@ -54,11 +48,11 @@ def main():
     
     # Initialize pipeline
     output_dir = os.path.join(os.path.dirname(__file__), "outputs")
-    pipeline = ContentGenerationPipeline(output_dir=output_dir, api_key=api_key)
+    orchestrator = GraphOrchestrator(api_key=api_key, output_dir=output_dir)
     
     # Run pipeline
     try:
-        output_paths = pipeline.run(raw_product_data)
+        output_paths = orchestrator.run(raw_product_data)
         
         print("\n" + "=" * 60)
         print("SUCCESS: All pages generated successfully!")

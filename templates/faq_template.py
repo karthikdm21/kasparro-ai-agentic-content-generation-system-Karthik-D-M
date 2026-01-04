@@ -1,22 +1,8 @@
-"""
-FAQ Template - Structured template for FAQ page generation.
-
-This template defines the structure for FAQ pages with dependencies on logic blocks.
-"""
-
 from typing import Dict, Any, List
 
 
 class FAQTemplate:
-    """
-    Template for generating FAQ pages with structured Q&A pairs.
-    
-    Template Structure:
-    - page_type: "faq"
-    - product_name: Name of the product
-    - questions: List of Q&A pairs with categories
-    - metadata: Page metadata (generated_date, version, etc.)
-    """
+    """Template for generating structured FAQ pages."""
     
     @staticmethod
     def get_structure() -> Dict[str, Any]:

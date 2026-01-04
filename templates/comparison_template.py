@@ -1,24 +1,8 @@
-"""
-Comparison Template - Structured template for product comparison page generation.
-
-This template defines the structure for comparison pages with dependencies on comparison_block.
-"""
-
 from typing import Dict, Any, List
 
 
 class ComparisonTemplate:
-    """
-    Template for generating product comparison pages.
-    
-    Template Structure:
-    - page_type: "comparison"
-    - product_a: First product information
-    - product_b: Second product information
-    - comparison: Feature-by-feature comparison (uses comparison_block)
-    - recommendation: Which product for which use case
-    - metadata: Page metadata
-    """
+    """Template for generating product comparison pages."""
     
     @staticmethod
     def get_structure() -> Dict[str, Any]:

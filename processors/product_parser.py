@@ -1,10 +1,10 @@
 from typing import Dict, Any
 
 
-class ProductParserAgent:
+class ProductParser:
     
     def __init__(self):
-        self.agent_name = "ProductParserAgent"
+        self.processor_name = "ProductParser"
     
     def parse(self, raw_product_data: Dict[str, Any]) -> Dict[str, Any]:
         
@@ -30,7 +30,7 @@ class ProductParserAgent:
                 raise ValueError(f"Missing required field: {field}")
         
         structured_data['_metadata'] = {
-            'agent': self.agent_name,
+            'processor': self.processor_name,
             'status': 'parsed',
             'field_count': len([v for v in structured_data.values() if v])
         }

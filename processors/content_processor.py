@@ -2,6 +2,7 @@ from typing import Dict, Any
 import sys
 import os
 
+# Add parent directory for imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from logic_blocks.benefits_block import format_benefits, get_benefit_details
@@ -10,10 +11,10 @@ from logic_blocks.safety_block import format_safety_info, get_contraindications
 from logic_blocks.comparison_block import compare_products, generate_fictional_competitor
 
 
-class ContentLogicAgent:
+class ContentProcessor:
     
     def __init__(self):
-        self.agent_name = "ContentLogicAgent"
+        self.processor_name = "ContentProcessor"
         
         self.logic_blocks = {
             "benefits": format_benefits,

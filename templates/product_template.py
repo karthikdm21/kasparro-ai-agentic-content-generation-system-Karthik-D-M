@@ -1,24 +1,8 @@
-"""
-Product Template - Structured template for product page generation.
-
-This template defines the structure for product pages with dependencies on logic blocks.
-"""
-
 from typing import Dict, Any, List
 
 
 class ProductTemplate:
-    """
-    Template for generating product pages with comprehensive product information.
-    
-    Template Structure:
-    - page_type: "product"
-    - product_info: Basic product information
-    - benefits_section: Structured benefits (uses benefits_block)
-    - usage_section: Usage instructions (uses usage_block)
-    - safety_section: Safety information (uses safety_block)
-    - metadata: Page metadata
-    """
+    """Template for generating detailed product pages."""
     
     @staticmethod
     def get_structure() -> Dict[str, Any]:
